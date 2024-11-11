@@ -1,0 +1,14 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Archivos de compilación de maven 
+target/
+.classpath
+.project
+.settings/
+
+# Resultado de pruebas locales
+test-output/
