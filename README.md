@@ -1,4 +1,4 @@
-# Proyecto de Automatización de Pruebas con Selenium, TestNG, Java y Maven
+# Proyecto de Automatización de Enviopack
 
 Este proyecto implementa pruebas automatizadas de interfaz gráfica (GUI) usando Selenium, TestNG y Java, gestionadas mediante Maven. Su objetivo es verificar la funcionalidad de la aplicación web bajo prueba, realizando pruebas automatizadas de los principales flujos de usuario.
 
