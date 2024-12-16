@@ -1,5 +1,6 @@
 package com.enviopack.common;
 
-public class TempClass {
 
+public class TempClass {
+	
 }
