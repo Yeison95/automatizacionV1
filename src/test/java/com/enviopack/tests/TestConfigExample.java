@@ -2,7 +2,7 @@ package com.enviopack.tests;
 
 import com.enviopack.config.ConfigLoader;
 import com.enviopack.config.ConfigAccessor;
-import com.enviopack.config.BrowserConfig;
+import com.enviopack.config.ConfigBrowser;
 import com.enviopack.enums.Browser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -66,10 +66,10 @@ public class TestConfigExample  {
         ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
         
         // Crear BrowserConfig
-        BrowserConfig browserConfig = new BrowserConfig(configAccessor);
+        ConfigBrowser configBrowser = new ConfigBrowser(configAccessor);
         
         // Verificar que el valor "browser" se mapee correctamente al enum Browser
-        Browser browser = browserConfig.getBrowser();
+        Browser browser = configBrowser.getBrowser();
         Assert.assertNotNull(browser, "El navegador no fue configurado correctamente.");
     }
 
@@ -83,10 +83,10 @@ public class TestConfigExample  {
         ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
         
         // Crear BrowserConfig
-        BrowserConfig browserConfig = new BrowserConfig(configAccessor);
+        ConfigBrowser configBrowser = new ConfigBrowser(configAccessor);
         
         // Intentar obtener el valor de un navegador no válido
-        browserConfig.getBrowser();
+        configBrowser.getBrowser();
     }
 }
 

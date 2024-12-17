@@ -2,11 +2,11 @@ package com.enviopack.config;
 
 import com.enviopack.enums.Browser;
 
-public class BrowserConfig {
+public class ConfigBrowser {
 
     private final ConfigAccessor configAccessor;
 
-    public BrowserConfig(ConfigAccessor configAccessor) {
+    public ConfigBrowser(ConfigAccessor configAccessor) {
         this.configAccessor = configAccessor;
     }
 
