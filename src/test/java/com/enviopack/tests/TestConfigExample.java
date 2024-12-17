@@ -1,52 +1,92 @@
 package com.enviopack.tests;
 
-import com.enviopack.config.ConfigReader;
+import com.enviopack.config.ConfigLoader;
+import com.enviopack.config.ConfigAccessor;
+import com.enviopack.config.BrowserConfig;
 import com.enviopack.enums.Browser;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestConfigExample {
-    
+public class TestConfigExample  {
+
     @Test
-    public void testBrowserInitialization() {
-        // Obtener la URL y el navegador desde el archivo de configuración
-        String url = ConfigReader.getUrl();
-        Browser browser = ConfigReader.getBrowser();
-
-        // Imprimir los valores leídos
-        System.out.println("URL: " + url);
-        System.out.println("Browser: " + browser);
-
-        // Aquí puedes usar el enum Browser para iniciar el WebDriver
-        WebDriver driver = null;
-
-        switch (browser) {
-            case CHROME:
-                // Iniciar WebDriver para Chrome
-                driver = new ChromeDriver();
-                break;
-            case FIREFOX:
-                // Iniciar WebDriver para Firefox
-                driver = new FirefoxDriver();
-                break;
-            case EDGE:
-                // Iniciar WebDriver para Edge (necesitarías agregar la implementación de EdgeDriver)
-                // driver = new EdgeDriver();
-                break;
-            default:
-                throw new IllegalStateException("Unsupported browser: " + browser);
-        }
-
-        // Navegar a la URL
-        driver.get(url);
+    public void testConfigLoader() {
+        // Path al archivo de configuración (ajustar según corresponda)
+        String filePath = "src/main/resources/config/properties.json";
         
-        // Aquí puedes agregar más pasos de prueba, por ejemplo:
-        // Assert.assertEquals(driver.getTitle(), "Expected Title");
+        // Crear una instancia de ConfigLoader
+        ConfigLoader configLoader = new ConfigLoader(filePath);
+        
+        // Verificar que el archivo se cargó correctamente
+        Assert.assertNotNull(configLoader.getConfig(), "La configuración no se cargó correctamente.");
+    }
 
-        // Cerrar el navegador al finalizar la prueba
-        driver.quit();
+    @Test
+    public void testConfigAccessor() {
+        // Path al archivo de configuración (ajustar según corresponda)
+        String filePath = "src/main/resources/config/properties.json";
+        
+        // Crear ConfigLoader y ConfigAccessor
+        ConfigLoader configLoader = new ConfigLoader(filePath);
+        ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
+        
+        // Verificar la obtención de un valor String
+        String url = configAccessor.getValor("url");
+        Assert.assertNotNull(url, "La URL no fue encontrada en la configuración.");
+        
+        // Verificar la obtención de un valor int
+        int port = configAccessor.getInt("port");
+        Assert.assertTrue(port > 0, "El puerto no es válido.");
+        
+        // Verificar la obtención de un valor booleano
+        boolean isEnabled = configAccessor.getBoolean("isEnabled");
+        Assert.assertTrue(isEnabled, "La clave isEnabled no tiene el valor correcto.");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testConfigAccessorException() {
+        // Path al archivo de configuración (ajustar según corresponda)
+        String filePath = "src/main/resources/config/properties.json";
+        
+        // Crear ConfigLoader y ConfigAccessor
+        ConfigLoader configLoader = new ConfigLoader(filePath);
+        ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
+        
+        // Intentar acceder a una clave que no existe
+        configAccessor.getValor("nonexistentKey");
+    }
+
+    @Test
+    public void testBrowserConfig() {
+        // Path al archivo de configuración (ajustar según corresponda)
+        String filePath = "src/main/resources/config/properties.json";
+        
+        // Crear ConfigLoader y ConfigAccessor
+        ConfigLoader configLoader = new ConfigLoader(filePath);
+        ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
+        
+        // Crear BrowserConfig
+        BrowserConfig browserConfig = new BrowserConfig(configAccessor);
+        
+        // Verificar que el valor "browser" se mapee correctamente al enum Browser
+        Browser browser = browserConfig.getBrowser();
+        Assert.assertNotNull(browser, "El navegador no fue configurado correctamente.");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testBrowserConfigInvalid() {
+        // Simular un archivo de configuración con un valor no válido para "browser"
+        String invalidFilePath = "src/main/resources/config/invalidBrowserConfig.json";
+        
+        // Crear ConfigLoader y ConfigAccessor
+        ConfigLoader configLoader = new ConfigLoader(invalidFilePath);
+        ConfigAccessor configAccessor = new ConfigAccessor(configLoader.getConfig());
+        
+        // Crear BrowserConfig
+        BrowserConfig browserConfig = new BrowserConfig(configAccessor);
+        
+        // Intentar obtener el valor de un navegador no válido
+        browserConfig.getBrowser();
     }
 }
 

@@ -1,4 +1,6 @@
 {
   "url": "https://stg1-appv2.enviopack.com/login",
-  "browser": "chrome"
+  "browser": "chrome",
+  "isEnabled": true,
+  "port": 5
 }
