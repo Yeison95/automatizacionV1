@@ -8,11 +8,11 @@ import java.io.IOException;
 
 public class ConfigLoader {
 
-    private static final String DEFAULT_CONFIG_PATH = "src/main/resources/config/properties.json"; // Ruta predeterminada
+    private static final String DEFAULT_CONFIG_PATH = "src/main/resources/config/properties.json";
     private final JsonNode config;
 
     public ConfigLoader() {
-        this(DEFAULT_CONFIG_PATH); // Llamar al constructor con la ruta predeterminada
+        this(DEFAULT_CONFIG_PATH); 
     }
 
     public ConfigLoader(String filePath) {
