@@ -3,7 +3,7 @@ package com.enviopack.common;
 import com.enviopack.config.ConfigLoader;
 import com.enviopack.config.ConfigAccessor;
 import com.enviopack.config.ConfigBrowser;
-import com.enviopack.driver.CustomWebDriverManager;
+import com.enviopack.driver.DriverManagerFactory;
 import com.enviopack.enums.Browser;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +20,7 @@ public class BaseTest {
         configLoader = new ConfigLoader();
         configBrowser = new ConfigBrowser(new ConfigAccessor(configLoader.getConfig()));
         Browser browser = configBrowser.getBrowser();
-        CustomWebDriverManager driverManager = new CustomWebDriverManager();
+        DriverManagerFactory driverManager = new DriverManagerFactory();
         driver = driverManager.createDriver(browser);
         driver.manage().window().maximize();
     }

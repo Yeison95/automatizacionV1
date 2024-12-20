@@ -1,5 +1,5 @@
 package com.enviopack.pages;
 
-public class TempClass {
+public class LoginPage {
 
 }

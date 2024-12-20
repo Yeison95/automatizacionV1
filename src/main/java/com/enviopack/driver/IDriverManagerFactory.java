@@ -2,6 +2,6 @@ package com.enviopack.driver;
 import org.openqa.selenium.WebDriver;
 import com.enviopack.enums.Browser;
 
-public interface IWebDriverFactory {
+public interface IDriverManagerFactory {
     WebDriver createDriver(Browser browser);
 }
