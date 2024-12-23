@@ -11,7 +11,7 @@ public class ConfigBrowser {
     }
 
     public Browser getBrowser() {
-        String browser = configAccessor.getValor("browser").toUpperCase();
+        String browser = configAccessor.getKey("browser").toUpperCase();
         return Browser.valueOf(browser);
     }
 }

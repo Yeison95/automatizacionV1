@@ -10,7 +10,7 @@ public class ConfigAccessor {
         this.config = config;
     }
 
-    public String getValor(String clave) {
+    public String getKey(String clave) {
         String[] keys = clave.split("\\.");
         JsonNode currentNode = config;
         for (String key : keys) {
@@ -23,10 +23,10 @@ public class ConfigAccessor {
     }
 
     public int getInt(String clave) {
-        return Integer.parseInt(getValor(clave));
+        return Integer.parseInt(getKey(clave));
     }
 
     public boolean getBoolean(String clave) {
-        return Boolean.parseBoolean(getValor(clave));
+        return Boolean.parseBoolean(getKey(clave));
     }
 }
