@@ -33,6 +33,5 @@ public class LoginPage extends BasePage {
     public LoginPage clickLogin() {
         click(loginBtn, "Login Button");
         return this;
-    }
-    
+    }    
 }

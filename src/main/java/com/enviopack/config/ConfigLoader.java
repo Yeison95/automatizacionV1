@@ -41,4 +41,18 @@ public class ConfigLoader {
     public String getBrowser() { 
     	return new ConfigAccessor(config).getKey("browser");
     }
+    public String getAdminEmail() {
+    	return new ConfigAccessor(config).getKey("email_admin");
+    }
+
+    public String getAdminPassword() {
+    	return new ConfigAccessor(config).getKey("password_admin");
+    }
+    public String getSellerEmail() {
+    	return new ConfigAccessor(config).getKey("email_seller");
+    }
+
+    public String getSellerPassword() {
+    	return new ConfigAccessor(config).getKey("password_seller");
+    }
 }
