@@ -13,6 +13,5 @@ public class WebDriverInitializationTest extends BaseTest {
 
         String title = driver.getTitle();
         assert title.contains("Google") : "La página de Google no se cargó correctamente. Título: " + title;
-        // prueba de git ad a kjsahd
     }
 }
