@@ -3,7 +3,7 @@
 <suite name="Suite">
 	    <test name="Test de prueba">
 	        <classes>
-	            <class name="com.enviopack.tests.WebDriverInitializationTest"/>
+	            <class name="com.enviopack.tests.LoginTest"/>
 	        </classes>
 	    </test>
 </suite> 
