@@ -33,8 +33,6 @@ public class LoginTest extends BaseTest {
             fail("Se esperaba una excepción por rol no válido.");
         } catch (IllegalArgumentException e) {
             assertEquals(e.getMessage(), "Rol de usuario desconocido: invalidRole", "El mensaje de error no es el esperado.");
-            
-            // esto es una prueba 
         }
     }
 }
