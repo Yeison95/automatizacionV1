@@ -8,10 +8,8 @@ public class BackOfficeTest extends BaseTest {
 
     @Test
     public void testClickAccessAccountButton() {
-
         BackOfficePage backOfficePage = new BackOfficePage(driver);
-        backOfficePage.load(); 
+        loginAs("admin");
         backOfficePage.clickAccessAccountButton();
-    	
     }
 }

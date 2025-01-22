@@ -42,7 +42,7 @@ public class BackOfficePage extends BasePage {
     	click(creditRechargeBtn, "Click Recharge Credit Button");
     }
     
-    public void clickaccessShipmentsButton()  {
+    public void clickAccessShipmentsButton()  {
         click(shipmentsBtn, "Click Shipments Button");    
     }
     
