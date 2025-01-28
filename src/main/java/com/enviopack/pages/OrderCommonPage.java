@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-
+import com.enviopack.utils.TableReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +27,8 @@ public class OrderCommonPage extends BasePage {
     private By filterBtn = By.xpath("//span[text()='Filtros']");
     // Localizador de las cabeceras de las columnas
     private By headers = By.cssSelector(".table__head .table__cell");
+    private String rowXPath = "//body/div[@id='app']/div[@class='sc-bczRLJ fPqkYZ']/div[@class='sc-bczRLJ bFhEtX']/div[@class='sc-bczRLJ fIvMuv']/div[@class='layout__main-content']/div[@role='table']/div[@class='styled__TableBody-sc-pv1bhz-1 eouKRU']/div";
+    private TableReader tableReader;
 
     public OrderCommonPage(WebDriver driver) {
         super(driver);
@@ -86,18 +88,7 @@ public class OrderCommonPage extends BasePage {
     	click(toProcessTableSearchFindBtn, "Click Find Button");
     }
 
-    // Método genérico para obtener los nombres de las columnas
-    public List<String> obtenerNombresColumnas() {
-        List<WebElement> columnasElementos = getElements(headers, "Column Headers");
-        List<String> nombresColumnas = new ArrayList<>();
-        for (WebElement columna : columnasElementos) {
-            nombresColumnas.add(columna.getText().trim());
-        }
-        return nombresColumnas;
-    }
-
-    // Método para contar la cantidad total de columnas
-    public int contarColumnas() {
-        return getElements(headers, "Column Headers").size();
+    public List<List<String>> getFirstTenRows() {
+        return tableReader.readTableRows(driver, rowXPath, 10);
     }
 }

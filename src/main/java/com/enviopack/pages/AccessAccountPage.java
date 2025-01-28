@@ -35,7 +35,5 @@ public class AccessAccountPage extends BasePage {
     public void clickAccessAccountFirstListResult() {
     	click(accessAccountFirstListResult, "Click Access Account First Line Result");
     }
-    
-    
 }
 

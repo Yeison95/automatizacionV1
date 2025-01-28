@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class ToProcessPage extends BasePage {
+public class OrdersToProcessPage extends BasePage {
 	
 	private By toProcessTitle = By.cssSelector(".sc-evZas.hrDTLF");
 	private By toProcessReturnBtn = By.cssSelector("div[class='button-select__options-wrapper'] div:nth-child(1) span:nth-child(1)");
@@ -16,12 +16,12 @@ public class ToProcessPage extends BasePage {
 	private By toProcessTableSearchInput = By.cssSelector("input[placeholder='Buscar por número de orden']");
 	private By toProcessTableSearchFindBtn = By.cssSelector(".sc-bczRLJ.cvcONn");
 			
-    public ToProcessPage(WebDriver driver) {
+    public OrdersToProcessPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
     
-    public ToProcessPage load() {
+    public OrdersToProcessPage load() {
         super.load("/por-procesar?orden_columna=fecha_alta&orden_sentido=DESC&pagina=1&ppp=50");
         return this;
     }

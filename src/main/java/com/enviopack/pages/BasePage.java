@@ -63,23 +63,6 @@ public class BasePage {
     protected String getText(By by, String elementName) {
         return ExplicitWaitUtil.performExplicitWait(WaitStrategy.VISIBLE, by).getText();
     }
-    
-    protected List<WebElement> getElements(By by, String elementName) {
-        try {
-            // Espera explícita para asegurarse de que los elementos estén visibles
-            ExplicitWaitUtil.performExplicitWait(WaitStrategy.VISIBLE, by);  // Espera explícita para la visibilidad de los elementos
-            List<WebElement> elements = driver.findElements(by);  // Recuperamos los elementos visibles
-            if (elements.isEmpty()) {
-                System.out.println("No se encontraron elementos para: " + elementName);
-            } else {
-                System.out.println("Se encontraron " + elements.size() + " elementos para: " + elementName);
-            }
-            return elements;
-        } catch (Exception e) {
-            System.err.println("Error al buscar elementos para: " + elementName);
-            throw e;
-        }
-    }
 
     protected void waitForSomeTime() {
         Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS); 
@@ -89,3 +72,4 @@ public class BasePage {
         Uninterruptibles.sleepUninterruptibly(time, TimeUnit.SECONDS);
     }
 }
+
