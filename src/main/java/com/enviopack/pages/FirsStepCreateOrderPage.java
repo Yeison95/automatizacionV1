@@ -1,12 +1,16 @@
 package com.enviopack.pages;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class FirsStepCreateOrderPage extends BasePage {
-    
-    private By zipCodeInput = By.name("codigoPostalDestino");
+    // Modal de cambio de deposito
+    private By depositOptionsInModal = By.cssSelector(".form__group .input__content--radio input[type='radio']");
+	private By saveInModalBtn = By.xpath("//button[.//span[text()='Guardar']]");
+	private By cancelInModalBtn = By.xpath("//button[.//span[text()='Cancelar']]");
     // Botón para el modal de conocer CP o sucursales por CP
     private By consultOfficesOrPostCodesBtn = By.cssSelector("div.sc-bczRLJ.ocmTX a.link-ui__label");
     // Opciones del modal de "Consultar CP"
@@ -22,6 +26,7 @@ public class FirsStepCreateOrderPage extends BasePage {
     // El botón "Consultar" sirve para ambas opciones
     private By consultButtonInModal = By.xpath("//span[normalize-space()='Consultar']");
     // Campos del form
+    private By zipCodeInput = By.name("codigoPostalDestino");
     private By contentValueInput = By.name("valorContenido");
     private By switchStockFullpackCheckbox = By.id("switch-stock-fullpack");
     private By modifyOriginWarehouseBtn = By.cssSelector("div[class='sc-bczRLJ lkpwjH'] a[class='link-ui__label']");
@@ -36,7 +41,9 @@ public class FirsStepCreateOrderPage extends BasePage {
     private By firstDescriptionInput = By.name("paquetes.0.descripcion_primera_linea");
     private By secondDescriptionInput = By.name("paquetes.0.descripcion_segunda_linea");
     private By assignProductsToPackageBtn = By.cssSelector("div[class='sc-bczRLJ fIwBX'] div[class='sc-bczRLJ kDKcRz']");
+    private By automaticallyAssignProductsInput = By.name("productosEnPaquete0");
     private By addAnotherPackageBtn = By.cssSelector("body > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(4) > span:nth-child(1) > span:nth-child(1) > a:nth-child(1) > div.sc-bczRLJ.kDKcRz");
+    private By deletePackageBtn = By.xpath("//body/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/*[name()='svg'][1]");
     private By exitCreateOrderBtn = By.xpath("//a[contains(@class, 'link-ui__label') and contains(@class, 'link-ui__label--bold') and normalize-space()='Salir']");
     private By continueToStepTwoBtn = By.xpath("//span[normalize-space()='Continuar']");
 
@@ -49,13 +56,31 @@ public class FirsStepCreateOrderPage extends BasePage {
         super.load("/orden/crear"); 
         return this; 
     }
-
-    // Métodos para interactuar con los elementos
-    public FirsStepCreateOrderPage enterZipCode(String value) {
-        sendKeys(zipCodeInput, value, "Zip Code Input");
+    
+    // Metodo para interectuar con el modal de Cambiar depo
+    public FirsStepCreateOrderPage clickSaveInModalButton() {
+        click(saveInModalBtn, "Botón Cancelar");
         return this;
     }
-
+    
+    public FirsStepCreateOrderPage clickCancelButton() {
+        click(cancelInModalBtn, "Botón Cancelar");
+        return this;
+    }
+    
+    // Método para seleccionar una opción de radio button por índice para el modal de cambio de deposito
+    public FirsStepCreateOrderPage selectDepositOptionsInModalByIndex(int index) {
+        List<WebElement> options = driver.findElements(depositOptionsInModal);
+        if (index >= 0 && index < options.size()) {
+            By optionBy = By.xpath("(//div[@class='form__group']//input[@type='radio'])[" + (index + 1) + "]");
+            click(optionBy, "Opción de Depósito en el Índice " + index);
+        } else {
+            System.out.println("Índice fuera de rango: " + index);
+        }
+        return this;
+    }
+    
+    // Metodo para interectuar con el modal de cambio consulta de CP
     public FirsStepCreateOrderPage clickConsultOfficesOrPostCodesButton() {
         click(consultOfficesOrPostCodesBtn, "Consult Offices or Post Codes Button");
         return this;
@@ -100,7 +125,14 @@ public class FirsStepCreateOrderPage extends BasePage {
         click(consultButtonInModal, "Consult Button in Modal");
         return this;
     }
-
+    
+    // Métodos para interactuar con los elementos del form
+    
+    public FirsStepCreateOrderPage enterZipCode(String value) {
+        sendKeys(zipCodeInput, value, "Zip Code Input");
+        return this;
+    }
+    
     public FirsStepCreateOrderPage enterContentValue(String value) {
         sendKeys(contentValueInput, value, "Content Value Input");
         return this;
@@ -170,10 +202,20 @@ public class FirsStepCreateOrderPage extends BasePage {
         click(assignProductsToPackageBtn, "Assign Products to Package Button");
         return this;
     }
+    
+    public FirsStepCreateOrderPage enterProductsToAssingAutomatically(String products) {
+        sendKeys(automaticallyAssignProductsInput, products, "Automatically Assign Products Input");
+        return this;
+    }
 
     public FirsStepCreateOrderPage clickAddAnotherPackageButton() {
         click(addAnotherPackageBtn, "Add Another Package Button");
         return this;
+    }
+    
+    public FirsStepCreateOrderPage clickDeletePackageButton() {
+    	click(deletePackageBtn,"Delete package Button");
+		return this;
     }
 
     public FirsStepCreateOrderPage clickExitCreateOrderButton() {
