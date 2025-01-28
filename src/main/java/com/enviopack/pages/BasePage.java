@@ -14,7 +14,7 @@ import com.enviopack.enums.WaitStrategy;
 import java.time.Duration;
 
 public class BasePage {
-
+	
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -55,7 +55,8 @@ public class BasePage {
         element.clear();
         element.sendKeys(value);
     }
-
+    
+    //Recupera el titulo de la pagina
     protected String getPageTitle() {
         return driver.getTitle();
     }

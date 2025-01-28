@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderCommonPage extends BasePage {
-
+	// Elementos comunes
     private By ordersSidenavItem = By.xpath("//div[contains(@class, 'MuiButtonBase-root') and contains(@class, 'MuiListItem-root') and contains(@class, 'sidenav__first') and .//span[contains(text(),'Órdenes')]]");
     private By createOrdenBtn = By.cssSelector(".button-select__wrapper--contained-primary");
     private By createOrderDropdownBtn = By.cssSelector("button[class='button-select__with-caret']");

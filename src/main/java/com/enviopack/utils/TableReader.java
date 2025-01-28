@@ -16,7 +16,7 @@ public class TableReader {
 
     public List<List<String>> readTableRows(WebDriver driver, String rowXPath, int numRows) {
         List<List<String>> tableData = new ArrayList<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera explícita de 10 segundos
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         for (int i = 1; i <= numRows; i++) {
             String dynamicRowXPath = rowXPath + "[" + i + "]";
