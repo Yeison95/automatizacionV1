@@ -87,7 +87,7 @@ public class SecondStepCreateOrderPage extends BasePage{
 		 click(viewLocationLinkBtn, "Click View Location Button");
 	 	}
 	 
-	 // Este elemento solo se ve cuando no hay cotizaciones disponibles 
+	 // Este elemento solo se ve cuando no hay cotizaciones disponibles.
 	 public void cleanFiltersBtn () {
 		 click(cleanFiltersLinkBtn, "Click Clean Filters Button");
 	 	}

@@ -14,7 +14,7 @@ import com.enviopack.enums.WaitStrategy;
 import java.time.Duration;
 
 public class BasePage {
-
+	
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -55,16 +55,22 @@ public class BasePage {
         element.clear();
         element.sendKeys(value);
     }
-
+    
+    //Recupera el titulo de la pagina
     protected String getPageTitle() {
         return driver.getTitle();
     }
+    
+    protected String getText(By by, String elementName) {
+        return ExplicitWaitUtil.performExplicitWait(WaitStrategy.VISIBLE, by).getText();
+    }
 
     protected void waitForSomeTime() {
-        Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS); // Asumí un valor predeterminado para WAIT
+        Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS); 
     }
 
     protected void waitForGivenTime(long time) {
         Uninterruptibles.sleepUninterruptibly(time, TimeUnit.SECONDS);
     }
 }
+
