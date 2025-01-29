@@ -21,19 +21,19 @@ public class BackOfficePage extends BasePage {
     private By b2bBtn = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(13) > div:nth-child(1)");
     
     
-    // Este metodo inicializa el driver en la pagina
+    // Este método inicializa el driver en la página
     public BackOfficePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
     
-    // Este metodo carga la URL de la pagina
+    // Este método carga la URL de la página
     public BackOfficePage load() {
         super.load("/backoffice");
         return this;
     }
     
-    // Estos metodos realizan la acción de click sobre los elementos
+    // Estos métodos realizan la acción de click sobre los elementos
     public void clickAccessAccountButton() {
         click(accessAccountBtn, "Click Access Account Button");
     }
