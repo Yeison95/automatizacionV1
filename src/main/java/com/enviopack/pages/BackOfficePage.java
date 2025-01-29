@@ -21,7 +21,7 @@ public class BackOfficePage extends BasePage {
     private By b2bBtn = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(13) > div:nth-child(1)");
     
     
-    // Este método inicializa el driver en la página
+    // Este método inicializa el driver en la página.
     public BackOfficePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
